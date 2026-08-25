@@ -48,31 +48,27 @@ export function remoteExecRow(cfg) {
   ].join('\n')
 }
 
-export function pythonCodeRuntimeRow() {
+export function specPtcRow() {
   return [
     '- id: code-runtime',
     '  disabled: true',
     '- insert:',
     '    - id: code-runtime-python-uv',
-    "      name: '@morewax/dsh-code-runtime-python'",
+    "      name: '@morewax/dsh-spec-ptc/python-runtime'",
     '      config:',
     '        uv: uv',
     "        python: '3.12'",
-  ].join('\n')
-}
-
-export function specPtcRow() {
-  return [
-    '- id: spec-ptc',
-    "  name: '@morewax/dsh-spec-ptc'",
-    '  config:',
-    '    socketPath: /tmp/spec-ptc.sock',
-    '    autoStart: true',
-    '    feedEnabled: true',
-    '    engine: dsh',
-    '    translateRunCode: true',
-    '    wrapRegistry: true',
-    '    speculatableTools: []',
+    '    - id: spec-ptc',
+    "      name: '@morewax/dsh-spec-ptc'",
+    '      config:',
+    '        socketPath: /tmp/spec-ptc.sock',
+    '        autoStart: true',
+    '        feedEnabled: true',
+    '        engine: dsh',
+    '        uvBin: uv',
+    '        translateRunCode: true',
+    '        wrapRegistry: true',
+    '        speculatableTools: []',
   ].join('\n')
 }
 
