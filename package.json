@@ -14,9 +14,9 @@
     "cordis.patch.yml"
   ],
   "keywords": [
-    "dsh-plugin",
-    "deepseek-harness",
     "agent",
+    "deepseek-harness",
+    "dsh-plugin",
     "mcp",
     "memory",
     "remote-execution"
@@ -36,5 +36,12 @@
     "@types/node": "^24.0.0",
     "typescript": "^5.9.0",
     "vitest": "^3.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moreWax/dsh-stack.git"
   }
 }
