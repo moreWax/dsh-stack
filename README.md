@@ -65,7 +65,7 @@ credential store / env references, per the dsh credential doctrine.
 pnpm install     # resolves the (unpublished) leaves from local checkouts via
                  # pnpm-workspace.yaml overrides — adjust paths if your
                  # checkouts live elsewhere
-pnpm test        # 9 tests: row renderers, validation, idempotent append
+pnpm test        # row/config models, validation, prompt characterization, idempotency
 npx tsc -p tsconfig.json --noEmit
 ```
 

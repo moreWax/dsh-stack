@@ -19,3 +19,6 @@ export const name = 'dsh-stack'
  * well-formed plugin for any loader path that requires an entry point.
  */
 export function apply() {}
+
+export { StackInitializer } from './initializer.js'
+export { StackRow, RemoteExecConfig, ROWS, appendRows } from './rows.js'
