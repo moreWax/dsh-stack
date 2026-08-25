@@ -83,19 +83,11 @@ try {
     rows.push(pythonCodeRuntimeRow())
   }
   if (await ask('Speculative tool calling (pre-runs tool calls during generation)?')) {
-    const probe = spawnSync('spec-ptc-daemon', ['--help'], { stdio: 'ignore' })
+    const probe = spawnSync('uv', ['--version'], { stdio: 'ignore' })
     if (probe.error !== undefined) {
-      console.log('  spec-ptc daemon not found on PATH.')
-      if (await ask('  Install it now? (pip install spec-ptc)')) {
-        const install = spawnSync('pip', ['install', 'spec-ptc'], { stdio: 'inherit' })
-        if (install.status !== 0) {
-          console.log('  pip install failed — add the row anyway; the plugin fails open until the daemon exists.')
-        }
-      } else {
-        console.log('  skipped install — the plugin fails open until the daemon exists.')
-      }
+      console.log('  uv not found on PATH — install uv first; spec-ptc fails open until then.')
     } else {
-      console.log('  spec-ptc daemon found.')
+      console.log('  uv found; spec-ptc installs its locked Python dependencies automatically.')
     }
     rows.push(specPtcRow())
   }
