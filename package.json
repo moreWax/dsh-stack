@@ -47,5 +47,10 @@
   },
   "engines": {
     "node": ">=22"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
   }
 }

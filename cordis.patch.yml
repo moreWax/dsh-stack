@@ -6,8 +6,9 @@
 
 # MCP manager: the + button by the composer for adding MCP servers, with
 # keys in the managed credential store (never in YAML).
-- id: mcp-manager
-  name: '@morewax/dsh-mcp-manager'
+- insert:
+    - id: mcp-manager
+      name: '@morewax/dsh-mcp-manager'
 
 # ---- templates (uncomment + edit, or run the init) -------------------------
 
