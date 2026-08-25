@@ -31,7 +31,8 @@
     "@morewax/dsh-remote-exec": "^0.1.0",
     "@morewax/dsh-prime-memory": "^0.1.0",
     "@morewax/dsh-okf-knowledge": "^0.1.0",
-    "@morewax/dsh-spec-ptc": "^0.1.0"
+    "@morewax/dsh-spec-ptc": "^0.1.0",
+    "@morewax/dsh-agent-mesh": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^24.0.0",

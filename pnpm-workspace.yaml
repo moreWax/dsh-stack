@@ -11,3 +11,4 @@ overrides:
   '@morewax/dsh-prime-memory': link:../dsh-prime-agent/packages/dsh-prime-memory
   '@morewax/dsh-okf-knowledge': link:../dsh-prime-agent/packages/dsh-okf-knowledge
   '@morewax/dsh-spec-ptc': link:../dsh-spec-ptc
+  '@morewax/dsh-agent-mesh': link:../dsh-agent-mesh

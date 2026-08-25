@@ -30,6 +30,7 @@ export class StackInitializer {
       else rows.push(new RemoteExecConfig({ driver: /** @type {import('./rows.js').Driver} */ (driver), host: await this.text('  host', ''), user: await this.text('  user', this.options.user), root: await this.text('  remote workdir', '~/remote-work') }).row())
     }
     if (await this.confirm('MCP manager UI (+ button by the composer for MCP servers)?')) rows.push(ROWS.mcpManager())
+    if (await this.confirm('SAM agent mesh (tools, inference, durable tasks; no SSH required)?')) rows.push(ROWS.agentMesh())
     if (await this.confirm('Speculative tool calling (pre-runs tool calls during generation)?')) {
       this.options.log(this.probe('uv', ['--version']).error !== undefined
         ? '  uv not found on PATH — install uv first; spec-ptc fails open until then.'

@@ -47,6 +47,7 @@ export const ROWS = Object.freeze({
   primeMemory: () => plugin('prime-memory', '@morewax/dsh-prime-memory', { primeHome: '~/.prime/agent', serveSkills: true, injectMemory: true }),
   okfKnowledge: () => plugin('okf-knowledge', '@morewax/dsh-okf-knowledge', { verifiedOnly: true }),
   mcpManager: () => plugin('mcp-manager', '@morewax/dsh-mcp-manager'),
+  agentMesh: () => plugin('agent-mesh', '@morewax/dsh-agent-mesh', { socketPath: '~/.config/sam-mesh/sam.sock', tcpUrl: 'http://127.0.0.1:8080', preferSocket: true }),
   specPtc: () => new StackRow(['code-runtime', 'code-runtime-python-uv', 'spec-ptc'], [
     { id: 'code-runtime', disabled: true },
     { insert: [
@@ -74,11 +75,12 @@ export class RemoteExecConfig {
 export const primeMemoryRow = () => ROWS.primeMemory().render()
 export const okfKnowledgeRow = () => ROWS.okfKnowledge().render()
 export const mcpManagerRow = () => ROWS.mcpManager().render()
+export const agentMeshRow = () => ROWS.agentMesh().render()
 export const specPtcRow = () => ROWS.specPtc().render()
 /** @param {{driver: Driver, host: string, user: string, root: string}} cfg */
 export const remoteExecRow = cfg => new RemoteExecConfig(cfg).row().render()
 
-export const STACK_ROW_IDS = Object.freeze(['prime-memory', 'okf-knowledge', 'remote-exec', 'mcp-manager', 'code-runtime', 'code-runtime-python-uv', 'spec-ptc'])
+export const STACK_ROW_IDS = Object.freeze(['prime-memory', 'okf-knowledge', 'remote-exec', 'mcp-manager', 'agent-mesh', 'code-runtime', 'code-runtime-python-uv', 'spec-ptc'])
 
 /** @param {string} text */
 const idsIn = text => [...text.matchAll(/^\s*- id: ([^\s#]+).*$/gm)].map(match => match[1]).filter(id => id !== undefined)

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
-  primeMemoryRow, okfKnowledgeRow, remoteExecRow, mcpManagerRow, specPtcRow, appendRows,
+  primeMemoryRow, okfKnowledgeRow, remoteExecRow, mcpManagerRow, agentMeshRow, specPtcRow, appendRows,
 } from '../src/rows.js'
 
 describe('row renderers', () => {
@@ -40,6 +40,8 @@ describe('row renderers', () => {
     expect(() => remoteExecRow({ driver: 'ssh', host: 'h', user: 'u', root: 'relative/path' }))
       .toThrow('remote root must be absolute')
   })
+
+  it('renders SAM mesh without SSH settings', () => { const row=agentMeshRow(); expect(row).toContain('agent-mesh'); expect(row).toContain('sam.sock'); expect(row).not.toContain('host:') })
 
   it('renders the spec-ptc row fail-open with autoStart on', () => {
     const row = specPtcRow()

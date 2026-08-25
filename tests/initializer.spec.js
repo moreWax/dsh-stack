@@ -14,7 +14,7 @@ function fixture(answers, initial = '') {
 
 describe('StackInitializer characterization', () => {
   it('preserves prompt order and writes selected models', async () => {
-    const x = fixture(['y', 'n', 'y', 'ssh', 'host-1', '', '/srv/work', 'y', 'n'])
+    const x = fixture(['y', 'n', 'y', 'ssh', 'host-1', '', '/srv/work', 'y', 'n', 'n'])
     const result = await x.init.run()
     expect(result.added).toEqual(['prime-memory', 'remote-exec', 'mcp-manager'])
     expect(x.init.options.askRaw.mock.calls.map(call => call[0])).toEqual([
@@ -24,19 +24,20 @@ describe('StackInitializer characterization', () => {
       '  driver (ssh/mosh/sam) [ssh]: ', '  host: ', '  user [alice]: ',
       '  remote workdir [~/remote-work]: ',
       'MCP manager UI (+ button by the composer for MCP servers)? [y/N] ',
+      'SAM agent mesh (tools, inference, durable tasks; no SSH required)? [y/N] ',
       'Speculative tool calling (pre-runs tool calls during generation)? [y/N] ',
     ])
     expect(x.contents()).toContain('user: alice')
   })
 
   it('makes no filesystem changes when nothing is selected', async () => {
-    const x = fixture(['n', 'n', 'n', 'n', 'n'])
+    const x = fixture(['n', 'n', 'n', 'n', 'n', 'n'])
     expect(await x.init.run()).toEqual({ added: [], skipped: [] })
     expect(x.fs.writeFileSync).not.toHaveBeenCalled()
   })
 
   it('is idempotent across initializer runs', async () => {
-    const first = fixture(['y', 'n', 'n', 'y', 'n']); await first.init.run()
+    const first = fixture(['y', 'n', 'n', 'y', 'n', 'n']); await first.init.run()
     const second = fixture(['y', 'n', 'n', 'y', 'n'], first.contents())
     const result = await second.init.run()
     expect(result.added).toEqual([]); expect(result.skipped).toEqual(['prime-memory', 'mcp-manager'])
