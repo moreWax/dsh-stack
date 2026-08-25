@@ -9,8 +9,9 @@ import { stdin, stdout, env } from 'node:process'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
+import { spawnSync } from 'node:child_process'
 import {
-  primeMemoryRow, okfKnowledgeRow, remoteExecRow, mcpManagerRow, appendRows,
+  primeMemoryRow, okfKnowledgeRow, remoteExecRow, mcpManagerRow, specPtcRow, appendRows,
 } from '../src/rows.js'
 
 const DSH_HOME = env.DSH_HOME ?? join(homedir(), '.dsh')
@@ -75,6 +76,23 @@ try {
   }
   if (await ask('MCP manager UI (+ button by the composer for MCP servers)?')) {
     rows.push(mcpManagerRow())
+  }
+  if (await ask('Speculative tool calling (pre-runs tool calls during generation)?')) {
+    const probe = spawnSync('spec-ptc-daemon', ['--help'], { stdio: 'ignore' })
+    if (probe.error !== undefined) {
+      console.log('  spec-ptc daemon not found on PATH.')
+      if (await ask('  Install it now? (pip install spec-ptc)')) {
+        const install = spawnSync('pip', ['install', 'spec-ptc'], { stdio: 'inherit' })
+        if (install.status !== 0) {
+          console.log('  pip install failed — add the row anyway; the plugin fails open until the daemon exists.')
+        }
+      } else {
+        console.log('  skipped install — the plugin fails open until the daemon exists.')
+      }
+    } else {
+      console.log('  spec-ptc daemon found.')
+    }
+    rows.push(specPtcRow())
   }
 } finally {
   closeInput()

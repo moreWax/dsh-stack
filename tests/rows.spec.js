@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
-  primeMemoryRow, okfKnowledgeRow, remoteExecRow, mcpManagerRow, appendRows,
+  primeMemoryRow, okfKnowledgeRow, remoteExecRow, mcpManagerRow, specPtcRow, appendRows,
 } from '../src/rows.js'
 
 describe('row renderers', () => {
@@ -41,8 +41,15 @@ describe('row renderers', () => {
       .toThrow('remote root must be absolute')
   })
 
+  it('renders the spec-ptc row fail-open with autoStart on', () => {
+    const row = specPtcRow()
+    expect(row).toContain('- id: spec-ptc')
+    expect(row).toContain("name: '@morewax/dsh-spec-ptc'")
+    expect(row).toContain('autoStart: true')
+  })
+
   it('never renders secrets into rows', () => {
-    const rows = [primeMemoryRow(), okfKnowledgeRow(), mcpManagerRow(),
+    const rows = [primeMemoryRow(), okfKnowledgeRow(), mcpManagerRow(), specPtcRow(),
       remoteExecRow({ driver: 'sam', host: 'mesh-peer', user: 'xor', root: '/srv' })]
     for (const row of rows) {
       expect(row).not.toMatch(/password|token|secret|key:/i)

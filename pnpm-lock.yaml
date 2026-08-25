@@ -10,6 +10,7 @@ overrides:
   '@morewax/dsh-remote-exec': link:../dsh-remote-exec
   '@morewax/dsh-prime-memory': link:../dsh-prime-agent/packages/dsh-prime-memory
   '@morewax/dsh-okf-knowledge': link:../dsh-prime-agent/packages/dsh-okf-knowledge
+  '@morewax/dsh-spec-ptc': link:../dsh-spec-ptc
 
 importers:
 
@@ -30,6 +31,9 @@ importers:
       '@morewax/dsh-remote-exec':
         specifier: link:../dsh-remote-exec
         version: link:../dsh-remote-exec
+      '@morewax/dsh-spec-ptc':
+        specifier: link:../dsh-spec-ptc
+        version: link:../dsh-spec-ptc
     devDependencies:
       '@types/node':
         specifier: ^24.0.0

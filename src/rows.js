@@ -48,6 +48,17 @@ export function remoteExecRow(cfg) {
   ].join('\n')
 }
 
+export function specPtcRow() {
+  return [
+    '- id: spec-ptc',
+    "  name: '@morewax/dsh-spec-ptc'",
+    '  config:',
+    '    socketPath: /tmp/spec-ptc.sock',
+    '    autoStart: true',
+    '    feedEnabled: true',
+  ].join('\n')
+}
+
 export function mcpManagerRow() {
   return [
     '- id: mcp-manager',
@@ -56,7 +67,7 @@ export function mcpManagerRow() {
 }
 
 /** All row ids the stack can write, for idempotency checks. */
-export const STACK_ROW_IDS = ['prime-memory', 'okf-knowledge', 'remote-exec', 'mcp-manager']
+export const STACK_ROW_IDS = ['prime-memory', 'okf-knowledge', 'remote-exec', 'mcp-manager', 'spec-ptc']
 
 /**
  * Append rows to a patch file's contents, skipping ids already present.

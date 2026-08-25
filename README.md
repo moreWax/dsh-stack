@@ -24,6 +24,7 @@ writes only the rows you choose into `~/.dsh/profiles/<profile>/cordis.patch.yml
 | `@morewax/dsh-remote-exec` | Run the agent's shell + files on your server (ssh / mosh / sam) |
 | `@morewax/dsh-mcp-client` | MCP bridge on the 2026-07-28 stateless protocol (v2 SDK) |
 | `@morewax/dsh-mcp-manager` | A `+` button by the composer for MCP servers, keys in the credential store |
+| `@morewax/dsh-spec-ptc` | Speculative tool calling — pre-runs tool calls while the model is still writing them |
 
 Every leaf also installs and works **independently** — the stack is a
 convenience, not a coupling:
