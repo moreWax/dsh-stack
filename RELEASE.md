@@ -8,13 +8,13 @@ npm, so the leaves go first.
 1. Create an npm granular access token (Automation, publish on `@morewax/*`).
 2. Add it as the `NPM_TOKEN` secret on EVERY repo:
    ```bash
-   for r in dsh-mcp-client dsh-mcp-manager dsh-remote-exec dsh-prime-agent dsh-stack; do
+   for r in dsh-mcp-client dsh-mcp-manager dsh-remote-exec dsh-prime-agent dsh-spec-ptc dsh-code-runtime-python dsh-stack; do
      gh secret set NPM_TOKEN --repo moreWax/$r
    done
    ```
 3. Flip repos public when ready:
    ```bash
-   for r in dsh-mcp-client dsh-mcp-manager dsh-remote-exec dsh-prime-agent dsh-stack; do
+   for r in dsh-mcp-client dsh-mcp-manager dsh-remote-exec dsh-prime-agent dsh-spec-ptc dsh-code-runtime-python dsh-stack; do
      gh repo edit moreWax/$r --visibility public --accept-visibility-change-consequences
    done
    ```
@@ -27,7 +27,9 @@ npm, so the leaves go first.
 | 2 | `dsh-remote-exec` | `@morewax/dsh-remote-exec` |
 | 3 | `dsh-prime-agent` | `@morewax/dsh-prime-memory`, `dsh-okf-knowledge`, `dsh-prime-agent-init` (testkit is private) |
 | 4 | `dsh-mcp-manager` | `@morewax/dsh-mcp-manager` |
-| 5 | `dsh-stack` | `@morewax/dsh-stack` (LAST — peers must resolve) |
+| 5 | `dsh-code-runtime-python` | `@morewax/dsh-code-runtime-python` |
+| 6 | `dsh-spec-ptc` | `@morewax/dsh-spec-ptc` |
+| 7 | `dsh-stack` | `@morewax/dsh-stack` (LAST — peers must resolve) |
 
 Each release triggers `.github/workflows/publish.yml`: install → typecheck →
 test → build → `npm publish --provenance --access public`.
@@ -37,6 +39,8 @@ test → build → `npm publish --provenance --access public`.
 ```bash
 npm view @morewax/dsh-stack version
 npm view @morewax/dsh-mcp-client version
+npm view @morewax/dsh-code-runtime-python version
+npm view @morewax/dsh-spec-ptc version
 # install path smoke, in a scratch profile:
 dsh plugin add @morewax/dsh-stack
 npx @morewax/dsh-stack init
