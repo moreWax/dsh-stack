@@ -43,5 +43,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/moreWax/dsh-stack.git"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
