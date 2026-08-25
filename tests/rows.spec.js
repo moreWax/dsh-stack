@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
-  primeMemoryRow, okfKnowledgeRow, remoteExecRow, mcpManagerRow, specPtcRow, appendRows,
+  primeMemoryRow, okfKnowledgeRow, remoteExecRow, mcpManagerRow, specPtcRow, pythonCodeRuntimeRow, appendRows,
 } from '../src/rows.js'
 
 describe('row renderers', () => {
@@ -39,6 +39,14 @@ describe('row renderers', () => {
       .toThrow('invalid remote user')
     expect(() => remoteExecRow({ driver: 'ssh', host: 'h', user: 'u', root: 'relative/path' }))
       .toThrow('remote root must be absolute')
+  })
+
+  it('renders Python Code Mode as a stock-provider replacement', () => {
+    const row = pythonCodeRuntimeRow()
+    expect(row).toContain('- id: code-runtime')
+    expect(row).toContain('disabled: true')
+    expect(row).toContain("name: '@morewax/dsh-code-runtime-python'")
+    expect(row).toContain('uv: uv')
   })
 
   it('renders the spec-ptc row fail-open with autoStart on', () => {

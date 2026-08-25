@@ -11,7 +11,7 @@ import { homedir } from 'node:os'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import {
-  primeMemoryRow, okfKnowledgeRow, remoteExecRow, mcpManagerRow, specPtcRow, appendRows,
+  primeMemoryRow, okfKnowledgeRow, remoteExecRow, mcpManagerRow, specPtcRow, pythonCodeRuntimeRow, appendRows,
 } from '../src/rows.js'
 
 const DSH_HOME = env.DSH_HOME ?? join(homedir(), '.dsh')
@@ -76,6 +76,11 @@ try {
   }
   if (await ask('MCP manager UI (+ button by the composer for MCP servers)?')) {
     rows.push(mcpManagerRow())
+  }
+  if (await ask('Python Code Mode via uv (required for automatic spec-ptc speculation)?')) {
+    const probe = spawnSync('uv', ['--version'], { stdio: 'ignore' })
+    if (probe.error !== undefined) console.log('  uv not found on PATH — install uv before using Python Code Mode.')
+    rows.push(pythonCodeRuntimeRow())
   }
   if (await ask('Speculative tool calling (pre-runs tool calls during generation)?')) {
     const probe = spawnSync('spec-ptc-daemon', ['--help'], { stdio: 'ignore' })

@@ -48,6 +48,19 @@ export function remoteExecRow(cfg) {
   ].join('\n')
 }
 
+export function pythonCodeRuntimeRow() {
+  return [
+    '- id: code-runtime',
+    '  disabled: true',
+    '- insert:',
+    '    - id: code-runtime-python-uv',
+    "      name: '@morewax/dsh-code-runtime-python'",
+    '      config:',
+    '        uv: uv',
+    "        python: '3.12'",
+  ].join('\n')
+}
+
 export function specPtcRow() {
   return [
     '- id: spec-ptc',

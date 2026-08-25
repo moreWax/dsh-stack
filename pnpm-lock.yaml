@@ -11,11 +11,15 @@ overrides:
   '@morewax/dsh-prime-memory': link:../dsh-prime-agent/packages/dsh-prime-memory
   '@morewax/dsh-okf-knowledge': link:../dsh-prime-agent/packages/dsh-okf-knowledge
   '@morewax/dsh-spec-ptc': link:../dsh-spec-ptc
+  '@morewax/dsh-code-runtime-python': link:../dsh-code-runtime-python
 
 importers:
 
   .:
     dependencies:
+      '@morewax/dsh-code-runtime-python':
+        specifier: link:../dsh-code-runtime-python
+        version: link:../dsh-code-runtime-python
       '@morewax/dsh-mcp-client':
         specifier: link:../dsh-mcp-client
         version: link:../dsh-mcp-client
