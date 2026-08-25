@@ -21,7 +21,7 @@ describe('StackInitializer characterization', () => {
       'Prime Agent memory bridge (memory injection + refine export)? [y/N] ',
       'OKF knowledge pages as provenance-gated skills? [y/N] ',
       "Remote execution (run the agent's shell + files on your server)? [y/N] ",
-      '  driver (ssh/mosh/sam) [ssh]: ', '  host: ', '  user [alice]: ',
+      '  driver (ssh/mosh) [ssh]: ', '  host: ', '  user [alice]: ',
       '  remote workdir [~/remote-work]: ',
       'MCP manager UI (+ button by the composer for MCP servers)? [y/N] ',
       'SAM agent mesh (tools, inference, durable tasks; no SSH required)? [y/N] ',

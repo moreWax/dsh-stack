@@ -8,13 +8,13 @@ npm, so the leaves go first.
 1. Create an npm granular access token (Automation, publish on `@morewax/*`).
 2. Add it as the `NPM_TOKEN` secret on EVERY repo:
    ```bash
-   for r in dsh-mcp-client dsh-mcp-manager dsh-remote-exec dsh-prime-agent dsh-spec-ptc dsh-stack; do
+   for r in dsh-mcp-client dsh-mcp-manager dsh-remote-exec dsh-prime-agent dsh-spec-ptc dsh-agent-mesh dsh-stack; do
      gh secret set NPM_TOKEN --repo moreWax/$r
    done
    ```
 3. Flip repos public when ready:
    ```bash
-   for r in dsh-mcp-client dsh-mcp-manager dsh-remote-exec dsh-prime-agent dsh-spec-ptc dsh-stack; do
+   for r in dsh-mcp-client dsh-mcp-manager dsh-remote-exec dsh-prime-agent dsh-spec-ptc dsh-agent-mesh dsh-stack; do
      gh repo edit moreWax/$r --visibility public --accept-visibility-change-consequences
    done
    ```
@@ -28,7 +28,8 @@ npm, so the leaves go first.
 | 3 | `dsh-prime-agent` | `@morewax/dsh-prime-memory`, `dsh-okf-knowledge`, `dsh-prime-agent-init` (testkit is private) |
 | 4 | `dsh-mcp-manager` | `@morewax/dsh-mcp-manager` |
 | 5 | `dsh-spec-ptc` | `@morewax/dsh-spec-ptc` |
-| 6 | `dsh-stack` | `@morewax/dsh-stack` (LAST — peers must resolve) |
+| 6 | `dsh-agent-mesh` | `@morewax/dsh-agent-mesh` |
+| 7 | `dsh-stack` | `@morewax/dsh-stack` (LAST — peers must resolve) |
 
 Each release triggers `.github/workflows/publish.yml`: install → typecheck →
 test → build → `npm publish --provenance --access public`.

@@ -25,8 +25,8 @@ export class StackInitializer {
     if (await this.confirm('Prime Agent memory bridge (memory injection + refine export)?')) rows.push(ROWS.primeMemory())
     if (await this.confirm('OKF knowledge pages as provenance-gated skills?')) rows.push(ROWS.okfKnowledge())
     if (await this.confirm("Remote execution (run the agent's shell + files on your server)?")) {
-      const driver = await this.text('  driver (ssh/mosh/sam)', 'ssh')
-      if (!['ssh', 'mosh', 'sam'].includes(driver)) this.options.log(`unknown driver "${driver}" — skipping remote execution`)
+      const driver = await this.text('  driver (ssh/mosh)', 'ssh')
+      if (!['ssh', 'mosh'].includes(driver)) this.options.log(`unknown driver "${driver}" — skipping remote execution`)
       else rows.push(new RemoteExecConfig({ driver: /** @type {import('./rows.js').Driver} */ (driver), host: await this.text('  host', ''), user: await this.text('  user', this.options.user), root: await this.text('  remote workdir', '~/remote-work') }).row())
     }
     if (await this.confirm('MCP manager UI (+ button by the composer for MCP servers)?')) rows.push(ROWS.mcpManager())

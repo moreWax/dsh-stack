@@ -4,7 +4,7 @@
  * settings and credential-store/environment references.
  */
 
-/** @typedef {'ssh' | 'mosh' | 'sam'} Driver */
+/** @typedef {'ssh' | 'mosh'} Driver */
 
 /** Render a small YAML subset from nested objects/arrays. */
 /** @param {unknown} value @returns {string} */
@@ -64,7 +64,7 @@ export class RemoteExecConfig {
     /** @type {string} */ this.host = value.host
     /** @type {string} */ this.user = value.user
     /** @type {string} */ this.root = value.root
-    if (!['ssh', 'mosh', 'sam'].includes(value.driver)) throw new Error(`invalid remote driver: ${value.driver}`)
+    if (!['ssh', 'mosh'].includes(value.driver)) throw new Error(`invalid remote driver: ${value.driver}`)
     if (!/^[A-Za-z0-9_.-]{1,64}$/.test(value.user)) throw new Error(`invalid remote user: ${value.user}`)
     if (value.host.trim() === '' || /\s/.test(value.host)) throw new Error(`invalid remote host: ${value.host}`)
     if (!value.root.startsWith('/') && !value.root.startsWith('~')) throw new Error(`remote root must be absolute or ~-relative: ${value.root}`)

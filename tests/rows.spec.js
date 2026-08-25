@@ -23,7 +23,7 @@ describe('row renderers', () => {
   })
 
   it('renders a remote-exec row for each driver', () => {
-    for (const driver of /** @type {const} */ (['ssh', 'mosh', 'sam'])) {
+    for (const driver of /** @type {const} */ (['ssh', 'mosh'])) {
       const row = remoteExecRow({ driver, host: 'box-1', user: 'xor', root: '~/work' })
       expect(row).toContain(`driver: ${driver}`)
       expect(row).toContain('host: box-1')
@@ -54,7 +54,7 @@ describe('row renderers', () => {
 
   it('never renders secrets into rows', () => {
     const rows = [primeMemoryRow(), okfKnowledgeRow(), mcpManagerRow(), specPtcRow(),
-      remoteExecRow({ driver: 'sam', host: 'mesh-peer', user: 'xor', root: '/srv' })]
+      remoteExecRow({ driver: 'ssh', host: 'remote-peer', user: 'xor', root: '/srv' })]
     for (const row of rows) {
       expect(row).not.toMatch(/password|token|secret|key:/i)
     }
