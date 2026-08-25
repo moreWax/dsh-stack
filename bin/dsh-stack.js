@@ -92,7 +92,8 @@ try {
     } else {
       console.log('  spec-ptc daemon found.')
     }
-    rows.push(specPtcRow())
+    // Must precede tool providers: Phase 2 wraps future ctx.tools.register calls.
+    rows.unshift(specPtcRow())
   }
 } finally {
   closeInput()

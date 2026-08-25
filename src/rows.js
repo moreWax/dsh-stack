@@ -56,6 +56,10 @@ export function specPtcRow() {
     '    socketPath: /tmp/spec-ptc.sock',
     '    autoStart: true',
     '    feedEnabled: true',
+    '    engine: dsh',
+    '    translateRunCode: true',
+    '    wrapRegistry: true',
+    '    speculatableTools: []',
   ].join('\n')
 }
 
