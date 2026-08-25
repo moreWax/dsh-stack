@@ -1,0 +1,12 @@
+allowBuilds:
+  esbuild: true
+# Dev-only: the five leaf plugins are unpublished, so resolve them from the
+# local checkouts. pnpm v10+ reads overrides ONLY from pnpm-workspace.yaml
+# (package.json pnpm.overrides is silently ignored). Published consumers
+# never see this file's overrides — they resolve the peers from npm.
+overrides:
+  '@morewax/dsh-mcp-client': link:../dsh-mcp-client
+  '@morewax/dsh-mcp-manager': link:../dsh-mcp-manager
+  '@morewax/dsh-remote-exec': link:../dsh-remote-exec
+  '@morewax/dsh-prime-memory': link:../dsh-prime-agent/packages/dsh-prime-memory
+  '@morewax/dsh-okf-knowledge': link:../dsh-prime-agent/packages/dsh-okf-knowledge

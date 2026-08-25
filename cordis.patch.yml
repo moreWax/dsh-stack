@@ -1,0 +1,45 @@
+# @morewax/dsh-stack default rows.
+#
+# Active by default: only the zero-config-safe plugins. Everything that needs
+# your environment (remote host, memory dir, knowledge bundle) is a commented
+# template — `npx @morewax/dsh-stack init` fills these in for you.
+
+# MCP manager: the + button by the composer for adding MCP servers, with
+# keys in the managed credential store (never in YAML).
+- id: mcp-manager
+  name: '@morewax/dsh-mcp-manager'
+
+# ---- templates (uncomment + edit, or run the init) -------------------------
+
+# Prime Agent memory bridge: durable memory injection + refine turn export.
+# - id: prime-memory
+#   name: '@morewax/dsh-prime-memory'
+#   config:
+#     primeHome: ~/.prime/agent
+#     serveSkills: true
+#     injectMemory: true
+
+# OKF/OpenWiki knowledge pages as provenance-gated skills.
+# - id: okf-knowledge
+#   name: '@morewax/dsh-okf-knowledge'
+#   config:
+#     verifiedOnly: true
+
+# Remote execution: the agent's shell and files live on your server.
+# - id: remote-exec
+#   name: '@morewax/dsh-remote-exec'
+#   config:
+#     driver: ssh            # ssh | mosh | sam
+#     host: my-server
+#     user: xor
+#     root: ~/remote-work
+
+# MCP servers ride @morewax/dsh-mcp-client (2026-07-28 stateless protocol);
+# add them from the UI via the mcp-manager + button, or write rows by hand:
+# - id: mcp-example
+#   name: '@morewax/dsh-mcp-client'
+#   config:
+#     serverName: example
+#     transport: stdio
+#     command: npx
+#     args: ['-y', '@modelcontextprotocol/server-everything']

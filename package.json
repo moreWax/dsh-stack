@@ -1,0 +1,40 @@
+{
+  "name": "@morewax/dsh-stack",
+  "version": "0.1.0",
+  "description": "The moreWax agent stack for DeepSeek Harness \u2014 one install for memory, knowledge, remote execution, and MCP management",
+  "license": "MIT",
+  "type": "module",
+  "main": "./src/index.js",
+  "bin": {
+    "dsh-stack": "./bin/dsh-stack.js"
+  },
+  "files": [
+    "src",
+    "bin",
+    "cordis.patch.yml"
+  ],
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "agent",
+    "mcp",
+    "memory",
+    "remote-execution"
+  ],
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "peerDependencies": {
+    "@morewax/dsh-mcp-client": "^0.1.0",
+    "@morewax/dsh-mcp-manager": "^0.1.0",
+    "@morewax/dsh-remote-exec": "^0.1.0",
+    "@morewax/dsh-prime-memory": "^0.1.0",
+    "@morewax/dsh-okf-knowledge": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  }
+}
